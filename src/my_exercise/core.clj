@@ -8,9 +8,12 @@
 (defroutes app
   (GET "/" [] home/page)
   (route/resources "/")
+  (POST "/search" [& params] 
+    (str "<h1> Hello " params "</h1>"))
+  ; (route/resources "/search")
   (route/not-found "Not found"))
 
 (def handler
   (-> app
-      (wrap-defaults site-defaults)
+      (wrap-defaults api-defaults)
       wrap-reload))
