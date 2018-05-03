@@ -7,10 +7,14 @@
             [my-exercise.home :as home]))
 
 (defroutes app
+  ;; gets the html template for the home page
   (GET "/" [] home/page)
   (route/resources "/")
-  (POST "/search" {params :params} 
-    (str " " params))
+
+  ;; makes a request to the election-search function
+  (POST "/search" request
+  (str(:form-params request)))
+
   (route/not-found "Not found"))
 
 (def handler
